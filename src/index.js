@@ -38,12 +38,12 @@ export default class ReactUserTour extends Component {
 			let position = el ? el.getBoundingClientRect() : {};
 			const isElementBelowViewBox = viewBoxHelpers.isElementBelowViewBox(windowHeight, position.top);
 			const isElementAboveViewBox = viewBoxHelpers.isElementBelowViewBox(position.bottom);
-			if (isElementBelowViewBox) {
-				position = scrollToPosition(el, position.bottom);
-			}
-			else if (isElementAboveViewBox) {
-				position = scrollToPosition(el, window.pageYOffset + position.top);
-			}
+			//if (isElementBelowViewBox) {
+			//	position = scrollToPosition(el, position.bottom);
+			//}
+			//else if (isElementAboveViewBox) {
+			//	position = scrollToPosition(el, window.pageYOffset + position.top);
+			//}
 			const shouldPositionLeft = viewBoxHelpers.shouldPositionLeft(windowWidth, position.left);
 			const shouldPositionAbove = viewBoxHelpers.shouldPositionAbove(windowHeight, position.bottom);
 			const shouldPositionBelow = viewBoxHelpers.shouldPositionBelow(position.top);
@@ -105,6 +105,15 @@ export default class ReactUserTour extends Component {
 			elPos.left += horizontalOffset;
 			elPos.top += verticalOffset;
 
+			console.log("elPos", elPos);
+			if (viewBoxHelpers.isElementBelowViewBox(windowHeight, elPos.top)) {
+				console.log("scrollToPosition Below", elPos.top,  tourElHeight);
+				position = scrollToPosition(el, elPos.top + tourElHeight);
+			}
+			else if (viewBoxHelpers.isElementAboveViewBox(elPos.top - window.pageYOffset)) {
+				console.log("scrollToPosition Above",  window.pageYOffset, elPos.top);
+				position = scrollToPosition(el, elPos.top);
+			}
 			this.prevPos = elPos;
 			return elPos;
 		}
