@@ -25,7 +25,7 @@ const Arrow = ({position, width, height, size, color}) => {
 			break;
 		case "bottomLeft":
 			arrowStyle = arrowUp({size, color});
-			arrowStyle.left = width - (size * 2);
+			arrowStyle.left = width - (size * 3);
 			break;
 		default:
 			arrowStyle = {};

@@ -36,7 +36,7 @@ const positions = {
 	},
 	bottomLeft: ({position, tourElWidth, arrowSize, offsetHeight, margin}) => {
 		return {
-			left: (position.left + margin) - tourElWidth,
+			left: (position.left + margin) - tourElWidth + arrowSize,
 			top: (position.top + window.pageYOffset) + offsetHeight + arrowSize,
 			positioned: "bottomLeft"
 		};
