@@ -105,13 +105,10 @@ export default class ReactUserTour extends Component {
 			elPos.left += horizontalOffset;
 			elPos.top += verticalOffset;
 
-			console.log("elPos", elPos);
 			if (viewBoxHelpers.isElementBelowViewBox(windowHeight, elPos.top)) {
-				console.log("scrollToPosition Below", elPos.top,  tourElHeight);
-				position = scrollToPosition(el, elPos.top + tourElHeight);
+				position = scrollToPosition(el, elPos.top); // top of tip
 			}
 			else if (viewBoxHelpers.isElementAboveViewBox(elPos.top - window.pageYOffset)) {
-				console.log("scrollToPosition Above",  window.pageYOffset, elPos.top);
 				position = scrollToPosition(el, elPos.top);
 			}
 			this.prevPos = elPos;
@@ -223,7 +220,7 @@ export default class ReactUserTour extends Component {
 				<span className="react-user-tour-close"
 					style={xStyle}
 					onClick={this.props.onCancel}
-					onTouchTap={this.props.onCancel}>
+				>
 						{this.props.closeButtonText}
 				</span> : ""
 		);
